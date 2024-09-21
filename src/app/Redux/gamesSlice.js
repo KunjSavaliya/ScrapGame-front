@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchGames = createAsyncThunk('games/fetchGames', async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/users/scrape');
+    const response = await fetch('http://localhost:3012/api/users/scrape');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

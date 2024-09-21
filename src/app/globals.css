@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: white;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Poppins', serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+/* Custom scrollbar */
+.custom-scrollbar {
+  scrollbar-width: auto; /* For Firefox */
+  scrollbar-color:  transparent; 
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* Height for horizontal scrollbar */
+  background-color: transparent; /* Default background color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #69a2ff; 
+  border-radius: 10px; /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #69a2ff; /* Hover effect on scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent; /* Track color */
+}

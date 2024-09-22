@@ -4,18 +4,18 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchGameDetails = createAsyncThunk(
   'gameDetails/fetchGameDetails',
   async (link) => {
-    const response = await fetch(`http://localhost:5000/api/users/scrape-description`, {
+    const response = await fetch(`http://localhost:3012/api/users/scrape-description`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ url: link }),
     });
-    
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    
+
     const result = await response.json();
     return result.screenshots; // Assuming result.data is an array
   }
@@ -24,18 +24,18 @@ export const fetchGameDetails = createAsyncThunk(
 export const fetchGameData = createAsyncThunk(
   'gameDetails/fetchGameData',
   async (link) => {
-    const response = await fetch(`http://localhost:5000/api/users/scrape-Details`, {
+    const response = await fetch(`http://localhost:3012/api/users/scrape-Details`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ url: link }),
     });
-    
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    
+
     const result = await response.json();
     return result.games; // Assuming result.data is an array
   }
@@ -44,18 +44,18 @@ export const fetchGameData = createAsyncThunk(
 export const fetchGamesizeData = createAsyncThunk(
   'gameDetails/fetchGamesizeData',
   async (link) => {
-    const response = await fetch(`http://localhost:5000/api/users/scrape-game`, {
+    const response = await fetch(`http://localhost:3012/api/users/scrape-game`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ url: link }),
     });
-    
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    
+
     const result = await response.json();
     return result.game; // Assuming result.data is an array
   }

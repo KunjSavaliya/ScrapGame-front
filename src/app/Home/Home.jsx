@@ -22,6 +22,8 @@ const HomeGames = () => {
     router.push(`/GameDescription?pageLink=${encodeURIComponent(item.link)}`);
   };
 
+  console.log('"');
+  
   // Filter out entries with default values
   const filteredGames = games?.data?.filter((item) => 
     item.title !== "No title available" && 

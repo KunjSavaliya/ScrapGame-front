@@ -29,7 +29,7 @@ const Carousel = () => {
       } else if (window.innerWidth < 1024) {
         setItemsPerPage(7);
       } else {
-        setItemsPerPage(9);
+        setItemsPerPage(10);
       }
     };
     window.addEventListener('resize', handleResize);
@@ -59,10 +59,10 @@ const Carousel = () => {
 
   return (
     <div className="relative mb-6">
-      <div className="relative grid grid-cols-3 gap-6 transition-transform duration-500 ease-in-out sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9">
+      <div className="relative grid grid-cols-3 gap-4 transition-transform duration-500 ease-in-out sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10">
         {filteredGames?.slice(currentIndex * itemsPerPage, currentIndex * itemsPerPage + itemsPerPage).map((game, index) => (
           <div key={index} className="flex-shrink-0 w-full" onClick={() => handleImageClick(game)}>
-            <div className="relative overflow-hidden rounded-[30px] w-[70px] h-[70px] cursor-pointer">
+            <div className="relative overflow-hidden rounded-[20px] w-[70px] h-[70px] cursor-pointer">
               <Image
                 src={game.image}
                 alt={game.title}

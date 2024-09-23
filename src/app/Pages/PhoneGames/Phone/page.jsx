@@ -4,12 +4,13 @@ import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSearch } from '../../Components/SerchContext';
+import { useSearch } from '../../../Components/SerchContext';
 import { RiCloseLine } from 'react-icons/ri';
 import 'animate.css';
-import { fetchGames } from '../../Redux/gamesSlice';
+import { fetchGames } from '../../../Redux/gamesSlice';
 import { BiLoaderCircle } from 'react-icons/bi';
-function Puzzle() {
+import Carousel from '../../../Components/Carousel';
+function Phone() {
   const router = useRouter();
 const dispatch = useDispatch();
 const { games, loading, error } = useSelector((state) => state.games);
@@ -58,12 +59,12 @@ const { games, loading, error } = useSelector((state) => state.games);
           )}
         </div>
       )}
-      {/* <Carousel /> */}
+   
       <div className="bg-[#69a2ff] p-2 grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 rounded-lg mb-3 border-white " style={{ boxShadow: "rgb(157 194 255) 0px 2px 4px, rgb(157 194 255) 0px 7px 13px -3px, rgb(157 194 255) 0px -2px 0px inset" }}>
-        <h1 className="pl-5 text-2xl text-white font-lighter ">Windows</h1>
+        <h1 className="pl-8 text-2xl text-white font-lighter ">Phone</h1>
       </div>
       <div className="flex flex-col items-center justify-center p-5">
-    {/* <Carousel /> */}
+    <Carousel />
     {loading ? (
       <div className="flex items-center justify-center h-64">
         <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
@@ -108,7 +109,7 @@ const { games, loading, error } = useSelector((state) => state.games);
             );
           })
         ) : (
-          <h1 className='text-2xl mt-2 text-[#69a2ff] mb-2 text-center'></h1>
+          <h1 className='text-2xl mt-2 text-[#69a2ff] mb-2 text-center'>No games found</h1>
         )}
       </div>
     )}
@@ -118,4 +119,4 @@ const { games, loading, error } = useSelector((state) => state.games);
   );
 }
 
-export default Puzzle;
+export default Phone;

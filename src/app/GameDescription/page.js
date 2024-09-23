@@ -92,7 +92,10 @@ function GameDetails() {
       </div>
     );
   };
-
+  const handleImageClick = (item) => {
+    router.push(`/AppDownload?pageLink=${encodeURIComponent(url)}`);
+  };
+  
   return (
     <div className="flex flex-col items-center p-5">
       <div className="w-full max-w-screen-lg">
@@ -137,14 +140,8 @@ function GameDetails() {
             </div>
           </div>
           <div className="flex flex-col gap-4 cursor-pointer">
-            <div className="p-4 text-white bg-black rounded-lg" onClick={() => { /* Your download logic */ }}>
-              <h2 className="flex items-center gap-2">
-                <FaApple className="text-xl font-extrabold text-white" />
-                APK Download from App Store
-              </h2>
-            </div>
-            <div className="p-4 text-white bg-black rounded-lg" onClick={() => { /* Your download logic */ }}>
-              <h2 className="flex items-center gap-2">
+            <div className="p-4 text-white bg-black rounded-lg" onClick={handleImageClick}>
+              <h2 className="flex items-center gap-2 align-center">
                 <IoLogoGooglePlaystore className="text-xl font-extrabold text-white" />
                 APK Download from Google Play
               </h2>
@@ -176,26 +173,27 @@ function GameDetails() {
         <h1 className='text-2xl mt-2 text-[#69a2ff] mb-2'>Screenshot</h1>
         <hr className="w-full border-gray-300 border-t-1" />
         <div className="flex py-4 space-x-4 overflow-x-scroll cursor-pointer custom-scrollbar">
-          {data.screenshots?.map((src, index) => {
-            const isValidImageUrl = src && !src.includes("No screenshots available") &&
-                                     (src.startsWith("http://") || src.startsWith("https://"));
+  {data.screenshots?.map((src, index) => {
+    const isValidImageUrl = src && !src.includes("No screenshots available") &&
+                            (src.startsWith("http://") || src.startsWith("https://"));
 
-            return isValidImageUrl ? (
-              <div
-                key={index}
-                className="min-w-[250px] sm:min-w-[250px] md:min-w-[250px] lg:min-w-[280px] xl:min-w-[300px]"
-              >
-                <Image
-                  src={src}
-                  alt={`Screenshot ${index + 1}`}
-                  className="bg-cover rounded-lg"
-                  width={500}
-                  height={300}
-                />
-              </div>
-            ) : null;
-          })}
-        </div>
+    return isValidImageUrl ? (
+      <div
+        key={index}
+        className="flex-shrink-0 min-w-[150px] sm:min-w-[200px] md:min-w-[200px] lg:min-w-[200px] xl:min-w-[200px]"
+      >
+        <Image
+          src={src}
+          alt={`Screenshot ${index + 1}`}
+          className="w-full h-auto bg-cover rounded-lg"
+          width={200}
+          height={300}
+        />
+      </div>
+    ) : null;
+  })}
+</div>
+
         <div className='mt-5'>
           <Carousel />
         </div>

@@ -4,14 +4,12 @@ import "../globals.css";
 import { useSearchParams } from 'next/navigation';
 import { BiLoaderCircle } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGameDetails, selectGameDetails } from '../Redux/gameDetailsSlice';
 
 const GameSlider = () => {
   const searchParams = useSearchParams();
   const link = searchParams.get('pageLink');
   const dispatch = useDispatch();
 
-  const { game, loading, error } = useSelector(selectGameDetails);
   
   useEffect(() => {
     if (link) {
@@ -19,7 +17,6 @@ const GameSlider = () => {
     }
   }, [link, dispatch]); 
 
-  console.log("efewfewf==",game);
   
   return (
     <div className="relative w-full max-w-6xl mx-auto my-8">
@@ -29,7 +26,7 @@ const GameSlider = () => {
         </div>
       ) : (
         <div className="flex py-4 space-x-4 overflow-x-scroll cursor-pointer custom-scrollbar">
-          {game?.map((src, index) => {
+          {[]?.map((src, index) => {
             // Check if the src is a valid URL
             const isValidImageUrl = src && !src.includes("No screenshots available") && 
                                      (src.startsWith("http://") || src.startsWith("https://"));

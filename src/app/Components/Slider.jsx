@@ -17,8 +17,9 @@ const GameSlider = () => {
     if (link) {
       dispatch(fetchGameDetails(link));
     }
-  }, [link, dispatch]);
+  }, [link, dispatch]); 
 
+  console.log("efewfewf==",game);
   
   return (
     <div className="relative w-full max-w-6xl mx-auto my-8">

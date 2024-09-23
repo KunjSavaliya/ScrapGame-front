@@ -3,7 +3,8 @@ const nextConfig = {
     images: {
       domains: [
         'i.ytimg.com', 
-        'play-lh.googleusercontent.com' // Add the new domain here
+        'play-lh.googleusercontent.com',
+         // Add the new domain here
       ],
     },
     // Other existing configurations can go here

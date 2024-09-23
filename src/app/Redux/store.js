@@ -1,11 +1,12 @@
 // store/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import gamesReducer from './gamesSlice';
-import gameDetailsReducer from './gameDetailsSlice';
+import gamescrap from './gamescrap';
+
 const store = configureStore({
   reducer: {
     games: gamesReducer,
-    gameDetails: gameDetailsReducer,
+    scraping: gamescrap,
   },
 });
 

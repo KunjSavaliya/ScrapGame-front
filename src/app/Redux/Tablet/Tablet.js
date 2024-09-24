@@ -1,9 +1,9 @@
-// src/Redux/topFreeGameSlice.js
+    // src/Redux/TabletGameSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchTopFreeGames = createAsyncThunk('games/fetchTopFreeGames', async () => {
+export const fetchTabletGame = createAsyncThunk('games/fetchscrapetabletgame', async () => {
   try {
-    const response = await fetch('http://localhost:3012/api/users/scrape-topfreegame');
+    const response = await fetch('http://localhost:3012/api/users/scrape-tabletgame');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -17,28 +17,28 @@ export const fetchTopFreeGames = createAsyncThunk('games/fetchTopFreeGames', asy
 });
 
 
-const topFreeGameSlice = createSlice({
-  name: 'TopFreegame',
+const TabletGameSlice = createSlice({
+  name: 'TabletGame',
   initialState: {
-    TopFreegame: [],
+    TabletGame: [],
     loading: true,
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTopFreeGames.pending, (state) => {
+      .addCase(fetchTabletGame.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchTopFreeGames.fulfilled, (state, action) => {
+      .addCase(fetchTabletGame.fulfilled, (state, action) => {
         state.loading = false;
-        state.TopFreegame = action.payload; // Adjust based on the structure of the payload
+        state.TabletGame = action.payload; // Adjust based on the structure of the payload
       })
-      .addCase(fetchTopFreeGames.rejected, (state, action) => {
+      .addCase(fetchTabletGame.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message; // Capture any errors
       });
   },
 });
 
-export default topFreeGameSlice.reducer;
+export default TabletGameSlice.reducer;

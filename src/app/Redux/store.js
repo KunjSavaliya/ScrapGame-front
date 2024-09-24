@@ -3,6 +3,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import gamesReducer from './gamesSlice';
 import gamescrap from './gamescrap';
 import topFreeGameReducer from './PhoneGame/TopFreeGame';
+import CasualGame from './PhoneGame/CasualGame';
+import TabletGame from './Tablet/Tablet';
+
+
 
 
 const store = configureStore({
@@ -10,6 +14,8 @@ const store = configureStore({
     games: gamesReducer,
     scraping: gamescrap,
     TopFreegame: topFreeGameReducer,
+    CasualGame :CasualGame,
+    TabletGame:TabletGame
   },
 });
 

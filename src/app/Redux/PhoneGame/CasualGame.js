@@ -1,13 +1,14 @@
-// src/Redux/topFreeGameSlice.js
+// src/Redux/CasualGameSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchTopFreeGames = createAsyncThunk('games/fetchTopFreeGames', async () => {
+export const fetchCasualGame = createAsyncThunk('games/fetchscrapecasualGame', async () => {
   try {
-    const response = await fetch('http://localhost:3012/api/users/scrape-topfreegame');
+    const response = await fetch('http://localhost:3012/api/users/scrape-casualgame');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
+    console.log("F=====:", data);
     return data; // Ensure this returns data structured correctly for your state
     
   } catch (error) {
@@ -17,28 +18,28 @@ export const fetchTopFreeGames = createAsyncThunk('games/fetchTopFreeGames', asy
 });
 
 
-const topFreeGameSlice = createSlice({
-  name: 'TopFreegame',
+const CasualGameSlice = createSlice({
+  name: 'CasualGame',
   initialState: {
-    TopFreegame: [],
+    CasualGame: [],
     loading: true,
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTopFreeGames.pending, (state) => {
+      .addCase(fetchCasualGame.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchTopFreeGames.fulfilled, (state, action) => {
+      .addCase(fetchCasualGame.fulfilled, (state, action) => {
         state.loading = false;
-        state.TopFreegame = action.payload; // Adjust based on the structure of the payload
+        state.CasualGame = action.payload; // Adjust based on the structure of the payload
       })
-      .addCase(fetchTopFreeGames.rejected, (state, action) => {
+      .addCase(fetchCasualGame.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message; // Capture any errors
       });
   },
 });
 
-export default topFreeGameSlice.reducer;
+export default CasualGameSlice.reducer;

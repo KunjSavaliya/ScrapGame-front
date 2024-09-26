@@ -21,9 +21,10 @@ const GameSlider = () => {
   return (
     <div className="relative w-full max-w-6xl mx-auto my-8">
       {loading ? ( 
-        <div className="flex items-center justify-center h-64">
-          <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
-        </div>
+        <div className="flex flex-col items-center justify-center h-64">
+        <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
+        <p className='text-blue-500 '>Please Wait</p>
+    </div>
       ) : (
         <div className="flex py-4 space-x-4 overflow-x-scroll cursor-pointer custom-scrollbar">
           {[]?.map((src, index) => {

@@ -70,9 +70,10 @@ console.log("topFree",TopFreegame);
       <div className="flex flex-col items-center justify-center p-5">
     <Carousel />
     {loading ? (
-      <div className="flex items-center justify-center h-64">
-        <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
-      </div>
+    <div className="flex flex-col items-center justify-center h-64">
+    <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
+    <p className='text-blue-500 '>Please Wait</p>
+</div>
     ) : error ? (
       <h1 className='mt-2 text-2xl text-center text-red-500'>{error}</h1>
     ) : (

@@ -17,10 +17,28 @@ export const fetchTabletGame = createAsyncThunk('games/fetchscrapetabletgame', a
 });
 
 
+export const fetchNewLaunchGame = createAsyncThunk('games/fetchNewLaunchGame', async () => {
+  try {
+    const response = await fetch('http://localhost:3012/api/users/scrape-newluncgame');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data; // Ensure this returns data structured correctly for your state
+    
+  } catch (error) {
+    console.error("Error fetching games:", error);
+    throw error; // This will trigger the rejected case in the slice
+  }
+});
+
+
+
 const TabletGameSlice = createSlice({
   name: 'TabletGame',
   initialState: {
     TabletGame: [],
+    NewLaunchGame:[],
     loading: true,
     error: null,
   },
@@ -35,6 +53,17 @@ const TabletGameSlice = createSlice({
         state.TabletGame = action.payload; // Adjust based on the structure of the payload
       })
       .addCase(fetchTabletGame.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message; // Capture any errors
+      })
+      .addCase(fetchNewLaunchGame.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchNewLaunchGame.fulfilled, (state, action) => {
+        state.loading = false;
+        state.NewLaunchGame = action.payload; // Adjust based on the structure of the payload
+      })
+      .addCase(fetchNewLaunchGame.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message; // Capture any errors
       });

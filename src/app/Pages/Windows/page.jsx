@@ -23,9 +23,6 @@ import Carousel from '../../Components/Carousel';
     const filteredPhotos = [].filter((photo) =>
       photo.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    const clearSearch = () => {
-      setIsSearchVisible(false); 
-    };
 
 
   
@@ -33,11 +30,19 @@ import Carousel from '../../Components/Carousel';
       dispatch(fetchGames());
     }, [dispatch]);
 
-    const filteredGames = games?.data?.filter((item) => 
-      item.title !== "No title available" && 
-      item.image !== "No image available" && 
+    const clearSearch = () => {
+      setSearchQuery(''); // Clear the search input
+      setIsSearchVisible(false); // Hide the search bar
+    };
+  
+    // Filter games based on the search query
+    const filteredGames = games?.data?.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) && // Filter based on search query
+      item.title !== "No title available" &&
+      item.image !== "No image available" &&
       item.link !== "No link available"
     );
+  
     const length = filteredGames?.length
     
     return (
@@ -66,9 +71,10 @@ import Carousel from '../../Components/Carousel';
         <div className="flex flex-col items-center justify-center p-5">
       <Carousel />
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
-        </div>
+       <div className="flex flex-col items-center justify-center h-64">
+       <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
+       <p className='text-blue-500 '>Please Wait</p>
+   </div>
       ) : error ? (
         <h1 className='mt-2 text-2xl text-center text-red-500'>{error}</h1>
       ) : (
@@ -109,7 +115,7 @@ import Carousel from '../../Components/Carousel';
               );
             })
           ) : (
-            <h1 className='text-2xl mt-2 text-[#69a2ff] mb-2 text-center'>No games found</h1>
+            <h1 className='text-2xl mt-2 text-[#69a2ff] mb-2 text-center'></h1>
           )}
         </div>
       )}

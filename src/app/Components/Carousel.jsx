@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useSearch } from './SerchContext';
 import { fetchGames } from '../Redux/gamesSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchCasualGame } from '../Redux/PhoneGame/CasualGame';
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,10 +15,10 @@ const Carousel = () => {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const { games, loading, error } = useSelector((state) => state.games);
+  const { CasualGame, loading, error } = useSelector((state) => state.CasualGame);
 
   useEffect(() => {
-    dispatch(fetchGames());
+    dispatch(fetchCasualGame());
   }, [dispatch]);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Carousel = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const filteredGames = games?.data?.filter((item) => 
+  const filteredGames = CasualGame?.data?.filter((item) => 
     item.title !== "No title available" && 
     item.image !== "No image available" && 
     item.link !== "No link available"

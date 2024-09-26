@@ -17,7 +17,7 @@ function GameDetails() {
   const url = searchParams.get('pageLink');
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { setIsSearchVisible } = useSearch();
+  const { isSearchVisible } = useSearch();
   const dispatch = useDispatch();
   const { data, error } = useSelector((state) => state.scraping); // Correctly get data from the state
   const [isExpanded, setIsExpanded] = useState(false);
@@ -45,12 +45,16 @@ function GameDetails() {
 
   const handleClick = () => router.push('/');
 
-  // Check for loading state and error
+  if(isSearchVisible === true){
+    router.push('/');
+
+  }
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
-      </div>
+      <div className="flex flex-col items-center justify-center h-64">
+                    <BiLoaderCircle className="text-6xl text-blue-500 animate-spin" />
+                    <p className='text-blue-500 '>Please Wait</p>
+                </div>
     );
   }
 
@@ -166,7 +170,7 @@ function GameDetails() {
         <div className="mt-2">
           {visibleDescriptions.map((description, index) => (
             <h2
-              className="font-light text-[#696969] flex items-center gap-2 text-sm md:text-base mt-1"
+              className="font-light text-[#696969] gap-2 text-sm md:text-base mt-1"
               key={index}
               dangerouslySetInnerHTML={{ __html: description }} />
           ))}

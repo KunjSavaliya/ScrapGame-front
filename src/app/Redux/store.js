@@ -5,6 +5,8 @@ import gamescrap from './gamescrap';
 import topFreeGameReducer from './PhoneGame/TopFreeGame';
 import CasualGame from './PhoneGame/CasualGame';
 import TabletGame from './Tablet/Tablet';
+import TvGame from './Tv/tv';
+
 
 
 
@@ -15,7 +17,9 @@ const store = configureStore({
     scraping: gamescrap,
     TopFreegame: topFreeGameReducer,
     CasualGame :CasualGame,
-    TabletGame:TabletGame
+    TabletGame:TabletGame,
+    TvGame:TvGame
+    
   },
 });
 
